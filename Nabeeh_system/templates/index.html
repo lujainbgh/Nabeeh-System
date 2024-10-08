@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nabeeh - Accident Detection System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #333333;
+        }
+        #logo {
+            max-width: 30%;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+        }
+        #warning-banner {
+            background-color: #ff3b30;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            font-weight: bold;
+            font-size: 50px;
+        }
+        #main-road {
+            background-color: #4cd964;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 10px;
+            font-size: 25px;
+        }
+        #routes {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+            font-size: 25px;
+        }
+        .route {
+            background-color: #007aff;
+            color: white;
+            width: 30%;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        #arabic-message {
+            color: white;
+            text-align: center;
+            padding: 20px;
+            direction: rtl;
+            font-size: 60px;
+        }
+        .hidden {
+            display: none !important;
+        }
+        .scroll {
+            white-space: nowrap;
+            display: inline-block;
+            animation: scroll-text 10s linear infinite;
+        }
+        @keyframes scroll-text {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        #countdown {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content">
+        <div id="no-accident-content">
+            <img id="logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="Nabeeh Logo">
+            <div id="arabic-message" class="scroll">
+                خلك نبيـه !! يرجى القيادة بحذر
+            </div>
+        </div>
+        <div id="accident-info" class="hidden">
+            <div id="warning-banner">
+                Warning !! ⚠ Accident Detected Ahead !!<br>
+                !! تنبيـه ⚠ !! تم الكشف عن حادث أمامك
+            </div>
+            <div id="main-road">
+                <span id="main-road-name"></span><br>
+                <span id="main-road-name-ar"></span><br>
+                Estimating waiting time:<br>
+                وقت الانتظار المتوقع : <span id="countdown"></span>
+            </div>
+            <div id="routes">
+                <div class="route">
+                    ← Left Route<br>
+                    ← الطريق الأيسر<br>
+                    <span id="left-route-name"></span><br>
+                    <span id="left-route-name-ar"></span><br>
+                    Expected Time:<br>
+                    الوقت المتوقع:<br>
+                    <span id="left-time"></span>
+                </div>
+                <div class="route">
+                    Right Route →<br>
+                    الطريق الأيمن →<br>
+                    <span id="right-route-name"></span><br>
+                    <span id="right-route-name-ar"></span><br>
+                    Expected Time:<br>
+                    الوقت المتوقع:<br>
+                    <span id="right-time"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <iframe id="process-video-frame" src="{{ url_for('video_feed') }}" style="display: none;"></iframe>
+    <script>
+        function updateStatus() {
+            fetch('/get_status')
+                .then(response => response.json())
+                .then(data => {
+                    const accidentInfo = document.getElementById('accident-info');
+                    const noAccidentContent = document.getElementById('no-accident-content');
+                    const mainRoadName = document.getElementById('main-road-name');
+                    const mainRoadNameAr = document.getElementById('main-road-name-ar');
+                    const countdown = document.getElementById('countdown');
+                    const leftRouteName = document.getElementById('left-route-name');
+                    const leftRouteNameAr = document.getElementById('left-route-name-ar');
+                    const leftTime = document.getElementById('left-time');
+                    const rightRouteName = document.getElementById('right-route-name');
+                    const rightRouteNameAr = document.getElementById('right-route-name-ar');
+                    const rightTime = document.getElementById('right-time');
+
+                    if (data.accident) {
+                        accidentInfo.classList.remove('hidden');
+                        noAccidentContent.classList.add('hidden');
+                        mainRoadName.textContent = data.main_road.name;
+                        mainRoadNameAr.textContent = data.main_road.name_ar;
+                        countdown.textContent = data.main_road.wait_time;
+                        leftRouteName.textContent = data.alternative_routes.left.name;
+                        leftRouteNameAr.textContent = data.alternative_routes.left.name_ar;
+                        leftTime.textContent = data.alternative_routes.left.time;
+                        rightRouteName.textContent = data.alternative_routes.right.name;
+                        rightRouteNameAr.textContent = data.alternative_routes.right.name_ar;
+                        rightTime.textContent = data.alternative_routes.right.time;
+                    } else {
+                        accidentInfo.classList.add('hidden');
+                        noAccidentContent.classList.remove('hidden');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Update status every second
+        setInterval(updateStatus, 1000);
+
+        // Initial update
+        updateStatus();
+    </script>
+</body>
+</html>
