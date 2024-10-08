@@ -44,10 +44,10 @@ https://github.com/user-attachments/assets/f83ae571-314f-401a-8e27-de2a6f93f7b7
 
 
 ## Nebeeh Team
-Lujain Alghamdi
-Nouf Almutairi
-Manar Altalhi
-Maryam Alsulami
+- Lujain Alghamdi
+- Nouf Almutairi
+- Manar Altalhi
+- Maryam Alsulami
 
 ## Acknowledgments
 We would like to thank SDAIA and Tuwaiq Academy for their support and the opportunity to work on this project.
