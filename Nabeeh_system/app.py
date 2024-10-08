@@ -21,7 +21,8 @@ car_count_model = YOLO('models/count.pt')
 
 # Connect to MongoDB
 try:
-    client = MongoClient(os.environ.get('MONGODB_URI'))    db = client["accident_db1"]
+    client = MongoClient(os.environ.get('MONGODB_URI'))   
+    db = client["accident_db1"]
     accidents_collection = db["accidents"]
     fs = GridFS(db)  # Initialize GridFS
     print("Connected to MongoDB successfully!")
