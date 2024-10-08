@@ -8,8 +8,10 @@ This project implements a real-time traffic accident detection system using adva
 - Slow detection of accidents and the lack of real-time updates for drivers worsen traffic conditions.
 - Quick response to accidents is critical in Riyadh to prevent additional incidents and alleviate congestion.
 
-## Recent statistics in Saudi Arabia![stati](https://github.com/user-attachments/assets/8ce767aa-a725-4cd4-ad31-4a79e7bd37a6)
+## Recent statistics in Saudi Arabia
+![stati](https://github.com/user-attachments/assets/b4339d49-632d-4301-b2cf-45b558e335b1)
 
+Referance : https://www.stats.gov.sa/ar/1020
 
 ## Project Overview
 This project is focused on enhancing road safety by analyzing video streams from traffic cameras to detect traffic incidents. Upon detecting an accident, the system triggers a digital display to warn drivers, suggesting alternative routes, providing traffic density information, and estimating wait times.
