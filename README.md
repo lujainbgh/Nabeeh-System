@@ -2,6 +2,10 @@
 ### Capstone Project at Data Science and AI Bootcamp at SDAIA
 This project implements a real-time traffic accident detection system using advanced computer vision techniques, particularly leveraging YOLO models. The system aims to improve traffic safety and efficiency by detecting accidents in real time and providing alerts to drivers through dynamic signage.
 
+## Project Overview
+This project is focused on enhancing road safety by analyzing video streams from traffic cameras to detect traffic incidents. Upon detecting an accident, the system triggers a digital display to warn drivers, suggesting alternative routes, providing traffic density information, and estimating wait times.
+The project is aligned with the objectives of Saudi Vision 2030, aiming to contribute to smart city initiatives by improving transportation infrastructure and road safety.
+
 ## Problem Statement
 - Traffic congestion and accidents are significant issues in Riyadh, affecting urban mobility, safety, and quality of life.
 - Accidents in Riyadh contribute to increased travel times, higher risk of subsequent accidents, and environmental pollution.
@@ -12,10 +16,6 @@ This project implements a real-time traffic accident detection system using adva
 ![stati](https://github.com/user-attachments/assets/b4339d49-632d-4301-b2cf-45b558e335b1)
 
 Referance : https://www.stats.gov.sa/ar/1020
-
-## Project Overview
-This project is focused on enhancing road safety by analyzing video streams from traffic cameras to detect traffic incidents. Upon detecting an accident, the system triggers a digital display to warn drivers, suggesting alternative routes, providing traffic density information, and estimating wait times.
-The project is aligned with the objectives of Saudi Vision 2030, aiming to contribute to smart city initiatives by improving transportation infrastructure and road safety.
 
 ## Features
 Accident Detection: Uses YOLOv9m models to detect traffic accidents from live video feeds.
@@ -37,11 +37,17 @@ Traffic Density Calculation: Pretrained YOLOv8m model used for object detection 
 ## Results
 The system successfully detects accidents with high accuracy and provides real-time warnings to drivers. The smart screen displays alternative routes and traffic conditions, helping to reduce congestion and improve road safety.
 
-## Contributors
+## Demo 
+
+https://github.com/user-attachments/assets/f83ae571-314f-401a-8e27-de2a6f93f7b7
+
+
+
+## Nebeeh Team
 Lujain Alghamdi
 Nouf Almutairi
 Manar Altalhi
 Maryam Alsulami
 
 ## Acknowledgments
-We would like to thank Tuwaiq Academy and SDAIA for their support and the opportunity to work on this project.
+We would like to thank SDAIA and Tuwaiq Academy for their support and the opportunity to work on this project.
